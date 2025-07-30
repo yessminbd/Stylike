@@ -1,4 +1,4 @@
-import Header from "./Components/Header";
+import Header from "./components/Header";
 import { Route, Router, Routes } from 'react-router-dom';
 import Home from "./pages/Home";
 import Collection from "./pages/Collection";

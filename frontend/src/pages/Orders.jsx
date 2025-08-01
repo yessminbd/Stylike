@@ -27,7 +27,7 @@ const Orders = () => {
             item['payment'] = order.payment;
             item['date'] = order.date;
             item['paymentMethod'] = order.paymentMethod;
-            item['amount'] = order.amount;
+            item['amount'] = item.price * item.quantity;
             allOrdersItem.push(item);
           });
         });

@@ -109,7 +109,7 @@ const Product = () => {
                 ))}
               </div>
               <div className='flex items-center gap-x-4'>
-                <button onClick={() => addToCart(product._id, size, color)} className='btn-dark w-1/2 flexCenter gap-x-3 '>Ajouter au panier <TbShoppingBagPlus /></button>
+                <button onClick={() => addToCart(product._id, size, color)} className='btn-dark sm:w-1/2 lg:w-1/2  flexCenter gap-x-3 '>Ajouter au panier <TbShoppingBagPlus /></button>
                 <button className='btn-light '><BiHeart size={15} /> </button>
               </div>
               <div className='flex items-center gap-x-2 mt-2'>

@@ -33,8 +33,8 @@
 
 ## 🔗 Accès aux interfaces
 
-- 🌐 **Interface Client** : [Voir ici](https://ton-lien-client.render.com)
-- 🔧 **Interface Admin** : [Voir ici](https://ton-lien-admin.render.com)
+- 🌐 **Interface Client** : [Voir ici](https://stylike-frontend.onrender.com/)
+- 🔧 **Interface Admin** : [Voir ici](https://stylike-admin.onrender.com)
 
 > **Identifiants Admin**  
 > 📧 Email : `admin@Stylike.com`  

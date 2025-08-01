@@ -6,30 +6,31 @@ import axios from 'axios'
 import { useEffect } from 'react'
 
 const Orders = () => {
-  const { currency, backend_url, token } = useContext(ShopContext)
-  const [orderData, setOrderData] = useState([])
+  const { currency, backend_url, token } = useContext(ShopContext);
+  const [orderData, setOrderData] = useState([]);
 
   const loadOrderData = async () => {
     try {
-      if (!token) {
-        return null;
-      }
+      if (!token) return;
 
-      const response = await axios.post(backend_url + '/api/order/user-orders', {}, { headers: { token } });
+      const response = await axios.post(
+        backend_url + '/api/order/user-orders',
+        {},
+        { headers: { token } }
+      );
+
       if (response.data.success) {
         let allOrdersItem = [];
-        response.data.orders.map((order) => {
-          order.items.map((item) => {
+        response.data.orders.forEach((order) => {
+          order.items.forEach((item) => {
             item['status'] = order.status;
             item['payment'] = order.payment;
             item['date'] = order.date;
             item['paymentMethod'] = order.paymentMethod;
             item['amount'] = order.amount;
-
             allOrdersItem.push(item);
           });
         });
-
         setOrderData(allOrdersItem.reverse());
       }
     } catch (error) {
@@ -38,55 +39,62 @@ const Orders = () => {
   };
 
   useEffect(() => {
-    loadOrderData()
-  }, [token])
+    loadOrderData();
+  }, [token]);
 
   return (
-    <section >
+    <section>
       <div className='max-padd-container pb-72'>
         <div className='max-padd-container py-10 rounded-xl my-6 max-xl:mt-8'>
-          <div className=''>
+          <div>
             <h3 className='h3'>Liste des <span className='text-secondary'>Commandes</span></h3>
           </div>
           {orderData.map((item, i) => (
-            <div key={i}>
-              <div className='py-4  flex-col gap-4'>
-                <div className='flex gap-x-3 w-full'>
-                  <div className='flex gap-6'>
-                    <img src={item.image[0]} className='w-[77px] rounded-lg' />
+            <div key={i} className='w-full'>
+              <div className='py-4 flex flex-col gap-4'>
+                <div className='flex flex-col sm:flex-row gap-4 sm:gap-x-6 w-full'>
+                  <div className='flex justify-center sm:block'>
+                    <img src={item.image[0]} alt={item.name} className='w-[77px] h-[77px] object-cover rounded-lg' />
                   </div>
-                  <div className='block w-full'>
+                  <div className='w-full'>
                     <h5 className='h5 capitalize line-clamp-1 text-secondary'>{item.name}</h5>
-                    <div className='flexBetween '>
-                      <div>
-                        <div className='flex items-center gap-x-2 sm:gap-x-3'>
-                          <div className='flexCenter gap-x-2 '>
-                            <h5 className='bold-14 '>Total</h5>
-                            <p className=' font-semibold text-[13px]'>{item.amount} {currency}</p>
+                    <div className='flex flex-col gap-4 xl:flex-row xl:justify-between'>
+                      <div className='space-y-2'>
+                        <div className='flex flex-wrap items-center gap-x-4 gap-y-2'>
+                          <div className='flex items-center gap-x-2'>
+                            <h5 className='bold-14'>Total</h5>
+                            <p className='font-semibold text-[13px]'>{item.amount} {currency}</p>
                           </div>
-                          <div className='flexCenter gap-x-2'>
-                            <h5 className='bold-15'>Quantité</h5>
-                            <p className='font-semibold text-[13px]'>{item.quantity} </p>
+                          <div className='flex items-center gap-x-2'>
+                            <h5 className='bold-14'>Quantité</h5>
+                            <p className='font-semibold text-[13px]'>{item.quantity}</p>
                           </div>
-                          {item.size ? <div className='flexCenter gap-x-2'>
-                            <h5 className='bold-14'>Taille</h5>
-                            <p className='font-semibold text-[13px]'>{item.size}</p>                         </div>
-                            : ""}
+                          {item.size && (
+                            <div className='flex items-center gap-x-2'>
+                              <h5 className='bold-14'>Taille</h5>
+                              <p className='font-semibold text-[13px]'>{item.size}</p>
+                            </div>
+                          )}
                         </div>
                         <div className='flex items-center gap-x-2'>
                           <h5 className='bold-14'>Date :</h5>
                           <p className='font-semibold text-[13px]'>{new Date(item.date).toDateString()}</p>
                         </div>
-                        <div>
-                          <p className=' font-semibold text-[13px]'>{item.paymentMethod === "COD" ? "Paiement à la livraison" : "Paiement en ligne"} </p>
-                        </div>
+                        <p className='font-semibold text-[13px]'>
+                          {item.paymentMethod === "COD" ? "Paiement à la livraison" : "Paiement en ligne"}
+                        </p>
                       </div>
-                      <div className='flex flex-col xl:flex-row gap-4'>
+                      <div className='flex flex-col sm:flex-row items-start sm:items-center gap-3 mt-4 xl:mt-0'>
                         <div className='flex items-center gap-2'>
                           <p className='min-w-2 h-2 rounded-full bg-green-500'></p>
-                          <p className='bold-14 text-[13px] '>{item.status}</p>
+                          <p className='bold-14 text-[13px]'>{item.status}</p>
                         </div>
-                        <button onClick={loadOrderData} className='btn-dark p-1.5 text-sm w-48'>Suivre</button>
+                        <button
+                          onClick={loadOrderData}
+                          className='btn-dark p-1.5 text-sm w-full sm:w-48'
+                        >
+                          Suivre
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -99,7 +107,7 @@ const Orders = () => {
       </div>
       <Footer />
     </section>
-  )
-}
+  );
+};
 
-export default Orders
+export default Orders;

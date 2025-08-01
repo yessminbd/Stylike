@@ -93,9 +93,9 @@ const Cart = () => {
           <div className='flex my-20'>
             <div className='w-full '>
               <CartTotal />
-              <button onClick={() => navigate('/place-order')} className='btn-dark mt-7'>Procéder au paiement</button>
-              <button onClick={() => navigate('/collection')} className='btn-secondary mt-7 mx-3'>Continuer mes achats</button>
-            </div>
+             <button onClick={() => navigate('/place-order')} className='btn-dark mt-7'>Procéder au paiement</button>
+              <button onClick={() => navigate('/collection')} className='btn-secondary mt-3 lg:mx-2 sm:mx-2 md:mx-2'>Continuer mes achats</button>
+           </div>
           </div>
         </div>
       </div>

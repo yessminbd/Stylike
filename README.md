@@ -36,10 +36,6 @@
 - 🌐 **Interface Client** : [Voir ici](https://stylike-frontend.onrender.com/)
 - 🔧 **Interface Admin** : [Voir ici](https://stylike-admin.onrender.com)
 
-> **Identifiants Admin**  
-> 📧 Email : `admin@Stylike.com`  
-> 🔑 Mot de passe : `Admin211743`
-
 ---
 
 ## 🧰 Technologies utilisées
